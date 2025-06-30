@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>O'quvchilar ro'yxati</title>
+    <style>
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #aaa;
+            text-align: center;
+        }
+        th {
+            background-color: #e0e0e0;
+        }
+        h2 {
+            text-align: center;
+        }
+
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<a href="{% url 'student_upload' %}">Yangi malumotlar yuklash</a>
+<nav>
+    <a href="{% url 'home' %}">🏠 Bosh sahifa</a> |
+    <a href="{% url 'student_list' %}">👨‍🎓 O‘quvchilar</a> |
+    <a href="{% url 'subjects_list' %}">📚 Fanlar</a> |
+    <a href="{% url 'teacher_list' %}">👩‍🏫 O‘qituvchilar</a> |
+    <a href="{% url 'grade' %}">📊 Baholar</a>
+</nav>
+
+<h2>📘 O'quvchilar Ro'yxati</h2>
+<table>
+    <thead>
+        <tr>
+            <th>№</th>
+            <th>Ism</th>
+            <th>Familiya</th>
+            <th>Manzil</th>
+            <th>Sinf</th>
+            <th>Tug‘ilgan sana</th>
+            <th>Baholari</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for student in students %}
+        <tr>
+            <td>{{ forloop.counter}}</td>
+            <td>{{ student.first_name }}</td>
+            <td>{{ student.last_name }}</td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.class_name }}</td>
+            <td>{{ student.birth_date }}</td>
+            <td><a href="#">Ko'rish</a></td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+</body>
+</html>
